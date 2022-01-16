@@ -43,7 +43,7 @@ jobs:
         with:
           image: yuanyoung/book-keeping-webdav
           tag: latest
-          dockerfile: Dockerfile
+          dockerfile: dockerfile
           registry: docker.io
           username: yuanyoung
           password: ${{ secrets.DOCKER_PSW }}
