@@ -1,6 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+      "esModuleInterop": true,
       "baseUrl": ".",
       "rootDir": ".",
       "outDir": "dist",

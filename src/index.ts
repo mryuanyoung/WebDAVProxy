@@ -1,9 +1,9 @@
 export const CONTAINER: any = {};
 
-import * as Koa from 'koa';
-import * as Router from 'koa-router';
-import * as KoaBody from 'koa-body';
-import * as cors from '@koa/cors';
+import Koa from 'koa';
+import Router from 'koa-router';
+import KoaBody from 'koa-body';
+import cors from '@koa/cors';
 import 'reflect-metadata';
 import { getAllFiles } from './utils/file';
 const Path = require('path');
