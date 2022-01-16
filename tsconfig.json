@@ -1,0 +1,16 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+      "baseUrl": ".",
+      "rootDir": ".",
+      "outDir": "dist",
+      "target": "es2017",
+      "module": "commonjs",
+      "sourceMap": true,
+      "typeRoots": [],
+      "types": ["node"],
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
+    },
+    "include": ["src"]
+  }
