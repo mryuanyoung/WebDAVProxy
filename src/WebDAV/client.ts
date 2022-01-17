@@ -1,4 +1,4 @@
-import { CreateFile } from 'src/dto/operator';
+import { CreateFile, GetFileReq } from 'src/dto/operator';
 import {createClient, WebDAVClient} from 'webdav';
 import {DAVClient} from '../decorator/webdav';
 
@@ -30,6 +30,24 @@ class WebDAV {
 
         const date = new Date();
         const res = await this.client.putFileContents(`/BookkeepingData/${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()}.json`, req.json);
+        return res;
+    }
+
+    async getDirContent(req: GetFileReq){
+        if(!this.hasClient()){
+            this.createClient(req.username, req.password);
+        }
+
+        const res = await this.client.getDirectoryContents(req.path || '/BookkeepingData/');
+        return res;
+    }
+
+    async getFileContent(req: GetFileReq){
+        if(!this.hasClient()){
+            this.createClient(req.username, req.password);
+        }
+
+        const res = await this.client.getFileContents(req.filename, {format: 'text'});
         return res;
     }
 }
