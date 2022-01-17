@@ -29,7 +29,7 @@ class WebDAV {
         }
 
         const date = new Date();
-        const res = await this.client.putFileContents(`/BookkeepingData/${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()}.json`, req.json);
+        const res = await this.client.putFileContents(`/BookkeepingData/${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()}.json`, req.json, {overwrite: true, contentLength: false});
         return res;
     }
 

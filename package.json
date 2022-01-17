@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
+    "gen-api": "tsc ./src/utils/api-gen.ts && node ./src/utils/api-gen.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
