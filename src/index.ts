@@ -50,6 +50,10 @@ const app = new Koa();
     });
 
     // 中间件
+    app.use(async (ctx, next) => {
+      console.log("请求开始", ctx.request, "\n\n");
+      next();
+    });
     app.use(cors());
     app.use(KoaBody());
     app.use(router.routes());
