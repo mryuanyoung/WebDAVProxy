@@ -26,11 +26,14 @@ class WebDAV {
     }
 
     const date = new Date();
+    const dateStr = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+    const timeStr = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    console.log(timeStr, " ", date.getHours(), date.getUTCHours());
     try {
       const res = await this.client.putFileContents(
-        `/BookkeepingData/${date.getFullYear()}-${
-          date.getMonth() + 1
-        }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.json`,
+        `/BookkeepingData/${dateStr} ${timeStr}.json`,
         req.json,
         { overwrite: true, contentLength: false }
       );
