@@ -59,7 +59,7 @@ class WebDAV {
       });
       return (res as Array<FileStat>).slice(0, 5);
     } catch (err) {
-      return err;
+      return [];
     }
   }
 
@@ -74,7 +74,7 @@ class WebDAV {
       });
       return res;
     } catch (err) {
-      return err;
+      return false;
     }
   }
 }
