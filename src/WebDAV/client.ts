@@ -9,7 +9,7 @@ class WebDAV {
   constructor() {}
 
   createClient(username: string, password: string, url?: string) {
-    this.client = createClient(url || "http://box.nju.edu.cn/seafdav", {
+    this.client = createClient(url || "https://box.nju.edu.cn/seafdav", {
       authType: AuthType.Password,
       username,
       password,
@@ -48,15 +48,19 @@ class WebDAV {
       this.createClient(req.username, req.password);
     }
 
-    const res = await this.client.getDirectoryContents(
-      req.path || "/BookkeepingData/"
-    );
-    (res as Array<FileStat>).sort((a, b) => {
-      const da = new Date(a.lastmod);
-      const db = new Date(b.lastmod);
-      return db.getTime() - da.getTime();
-    });
-    return (res as Array<FileStat>).slice(0, 5);
+    try {
+      const res = await this.client.getDirectoryContents(
+        req.path || "/BookkeepingData/"
+      );
+      (res as Array<FileStat>).sort((a, b) => {
+        const da = new Date(a.lastmod);
+        const db = new Date(b.lastmod);
+        return db.getTime() - da.getTime();
+      });
+      return (res as Array<FileStat>).slice(0, 5);
+    } catch (err) {
+      return err;
+    }
   }
 
   async getFileContent(req: GetFileReq) {
@@ -64,10 +68,14 @@ class WebDAV {
       this.createClient(req.username, req.password);
     }
 
-    const res = await this.client.getFileContents(req.filename, {
-      format: "text",
-    });
-    return res;
+    try {
+      const res = await this.client.getFileContents(req.filename, {
+        format: "text",
+      });
+      return res;
+    } catch (err) {
+      return err;
+    }
   }
 }
 
