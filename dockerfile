@@ -6,4 +6,7 @@ COPY ./dist/src ./
 
 EXPOSE 3001
 
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 CMD ["node", "index.js"]
