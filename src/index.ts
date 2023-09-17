@@ -54,7 +54,7 @@ const app = new Koa();
       console.log("请求开始", ctx.request, "\n\n");
       await next();
     });
-    app.use(cors());
+    app.use(cors({origin: '*'}));
     app.use(KoaBody());
     app.use(router.routes());
     app.use(async (ctx, next) => {
